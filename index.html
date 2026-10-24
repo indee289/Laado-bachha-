@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff0f6">
+<title>Meri Laado ❤️ | Birthday Surprise</title>
+<style>
+:root{--pink:#ff5d9e;--rose:#c93678;--ink:#49283c;--cream:#fff9f6;--lav:#eee5ff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(145deg,#fff3f8,#fff9f2 48%,#f2edff);overflow-x:hidden}
+button{font:inherit;cursor:pointer}
+.ambient{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.ambient i{position:absolute;bottom:-40px;font-style:normal;color:#ff91bb;opacity:.25;animation:float 12s linear infinite}
+@keyframes float{to{transform:translateY(-115vh) rotate(35deg);opacity:0}}
+.wrap{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:16px;position:relative;z-index:1}
+.card{width:min(100%,560px);position:relative;text-align:center;padding:clamp(22px,6vw,40px);border-radius:30px;background:rgba(255,255,255,.92);border:1px solid #ffd6e7;box-shadow:0 22px 65px #9d42651c;overflow:hidden;animation:in .45s ease}
+.card:before{content:"";position:absolute;left:-50px;top:-70px;width:150px;height:150px;border-radius:50%;background:#ffe0ec;opacity:.65}
+.card:after{content:"";position:absolute;right:-55px;bottom:-80px;width:175px;height:175px;border-radius:50%;background:#eee4ff;opacity:.65}
+.card>*{position:relative;z-index:1}
+@keyframes in{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:20px}
+.sound{border:1px solid #ffd0e2;background:#fff4f9;color:#9f2f69;border-radius:999px;padding:9px 12px;font-size:.8rem;font-weight:800;white-space:nowrap}
+.counter{font-size:.78rem;color:#a56b88;font-weight:800}
+.dots{display:flex;justify-content:center;gap:6px;margin-bottom:22px}
+.dot{height:7px;width:7px;border-radius:99px;background:#f2c8dc;transition:.25s}.dot.active{width:25px;background:var(--pink)}
+.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:#a45c80;font-weight:900}
+.emoji{font-size:clamp(3.3rem,16vw,5rem);display:block;margin:4px 0 13px;filter:drop-shadow(0 6px 5px #ff9fc533);animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(3deg)}}
+h1{font-size:clamp(1.9rem,8vw,3rem);line-height:1.1;letter-spacing:-.035em;color:var(--rose);margin:13px 0 15px}
+p{font-size:1.02rem;line-height:1.75;margin:12px 0}
+.sub{color:#916b80;font-size:.9rem}
+.btn{display:block;width:100%;max-width:340px;margin:21px auto 0;padding:15px 18px;border:0;border-radius:999px;background:linear-gradient(110deg,#ff4f94,#ff83b5);color:white;font-weight:850;box-shadow:0 9px 24px #ff5d9e42;transition:transform .16s,box-shadow .16s}
+.btn:hover{box-shadow:0 12px 28px #ff5d9e55}.btn:active{transform:scale(.97)}
+.btn.secondary{background:#fff0f6;color:#ad3471;border:1px solid #ffd0e2;box-shadow:none}
+.sticker{display:inline-block;background:#fff4f9;border:1px solid #ffd5e6;border-radius:16px;padding:11px 14px;margin:6px;font-size:.94rem;font-weight:750;box-shadow:0 5px 12px #c43d7a0a}
+.rule{display:flex;align-items:center;gap:10px;text-align:left;background:#fff6fa;border:1px solid #ffdae9;border-radius:16px;padding:12px 13px;margin:9px 0;font-weight:700}
+.rule b{font-size:1.5rem}
+.letter{max-height:48svh;overflow:auto;text-align:left;background:linear-gradient(145deg,#fffafd,#fff5fa);border:1px solid #ffd9e9;border-radius:21px;padding:17px;box-shadow:inset 0 0 0 4px #fff}
+.letter p{font-size:.96rem;line-height:1.8}
+.signature{font-weight:850;color:#c93678;text-align:center!important}
+.music-note{display:inline-block;margin-top:13px;color:#8e6580;font-size:.8rem}
+.confetti{position:fixed;z-index:8;top:-25px;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110svh) rotate(700deg);opacity:.15}}
+footer{margin-top:17px;color:#a27c91;font-size:.76rem}
+@media(max-width:380px){.wrap{padding:9px}.card{padding:20px 15px;border-radius:24px}.letter{padding:12px}.topline{margin-bottom:15px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="ambient" id="ambient"></div>
+<main class="wrap">
+<section class="card" aria-live="polite">
+ <div class="topline">
+  <button class="sound" id="sound">🔊 SOUND ON · LOUD</button>
+  <span class="counter" id="counter">01 / 06</span>
+ </div>
+ <div class="dots" id="dots"></div>
+ <div id="content"></div>
+ <button class="btn" id="next">Chalo, aage to badho →</button>
+ <footer>Sirf meri Laado ke liye, dil se ❤️ · 25 October 2026</footer>
+</section>
+</main>
+<script>
+const pages=[
+ {emoji:"🎀🎁",tag:"Aapke liye ek surprise",title:"Meri Laado ji, idhar to dekho!",body:"Aapke liye kuch special banaya hai. Pehle poora dekhna, beech mein bhaag mat jaana. 😂❤️",button:"Achha ji, dikhao →"},
+ {emoji:"🚨🥳",tag:"Breaking news",title:"Aaj meri favourite insaan ka birthday hai!",body:"Haan ji, wahi jo kabhi bahut bholi banti hain aur kabhi mujhe pareshan karke khud hi hans deti hain. 😂 Meri Laado, aaj ka din sirf aapka hai! ❤️",button:"Aage bhi kuch hai →"},
+ {emoji:"📋💗",tag:"Laado ke special rules",title:"Aaj ke rules follow karne padenge!",rules:true,button:"Theek hai, maan liya →"},
+ {emoji:"🫶🏻🌷",tag:"Ab sach mein dil ki baat",title:"Aap mere liye bahut special ho, Laado",body:"Jab se aap meri zindagi mein aaye ho na, mujhe lagta hai jaise mujhe woh pyaar, support, care aur respect mil gaya hai jo main hamesha chahta tha. Aapke saath chhoti si baat bhi special lagti hai. ❤️",button:"Meri ek aur baat suno →"},
+ {emoji:"💞🥹",tag:"Sirf aapke liye",title:"Ek baat hamesha yaad rakhna",body:"Main chahta hoon ki aap jab bhi mere saath ho, aapko apnapan mile, sukoon mile aur kabhi ye na lage ki aap akeli ho. Main har din koshish karunga ki aapko pyaar se rakhoon, aapki baat samjhoon aur aapki smile ki wajah banoon. ❤️",button:"Ab aakhri surprise, meri Laado 💌"},
+ {emoji:"💌🎂",tag:"Mere dil se aapke liye",title:"Happy Birthday, meri Laado 🫶🏻❤️",letter:true,button:"Phir se shuru karein ↺"}
+];
+let page=0,soundOn=true,ctx=null,activeNodes=[],musicTimeout=null;
+const $=id=>document.getElementById(id);
+function getAudio(){if(!ctx){const A=window.AudioContext||window.webkitAudioContext;if(A)ctx=new A()}if(ctx&&ctx.state==="suspended")ctx.resume();return ctx}
+function note(freq,dur=.18,delay=0,wave="sine",vol=.19){
+ if(!soundOn)return;const c=getAudio();if(!c)return;
+ const o=c.createOscillator(),g=c.createGain();o.type=wave;o.frequency.setValueAtTime(freq,c.currentTime+delay);
+ g.gain.setValueAtTime(.0001,c.currentTime+delay);g.gain.exponentialRampToValueAtTime(vol,c.currentTime+delay+.018);g.gain.setValueAtTime(vol,c.currentTime+delay+Math.max(.04,dur*.55));g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+delay+dur);
+ o.connect(g);g.connect(c.destination);o.start(c.currentTime+delay);o.stop(c.currentTime+delay+dur+.02);activeNodes.push(o);
+}
+function sfx(){[660,880,1046].forEach((f,i)=>note(f,.11,i*.055,"triangle",.12))}
+function sparkle(){[784,988,1175,1568].forEach((f,i)=>note(f,.23,i*.075,"sine",.13))}
+function stopMusic(){if(musicTimeout){clearTimeout(musicTimeout);musicTimeout=null}activeNodes.forEach(n=>{try{n.stop()}catch(e){}});activeNodes=[]}
+function playBirthdayTune(){
+ stopMusic();if(!soundOn)return;
+ // A newly synthesized, familiar birthday melody; no external audio file required.
+ const melody=[
+ [392,.28],[392,.28],[440,.55],[392,.55],[523,.55],[494,.9],
+ [392,.28],[392,.28],[440,.55],[392,.55],[587,.55],[523,.9],
+ [392,.28],[392,.28],[784,.55],[659,.55],[523,.55],[494,.55],[440,.95],
+ [698,.28],[698,.28],[659,.55],[523,.55],[587,.55],[523,1.05]
+ ];
+ let t=.08;
+ melody.forEach(([f,d])=>{note(f,d*.9,t,"triangle",.23);note(f/2,d*.82,t,"sine",.075);t+=d+.045});
+ [523,659,784,1046].forEach((f,i)=>note(f,2.1,t+i*.025,"sine",.12));
+}
+function confetti(){const arr=["💗","💖","💕","✨","🌷","🎉","🎊","❤️"];for(let i=0;i<65;i++){const e=document.createElement("span");e.className="confetti";e.textContent=arr[Math.floor(Math.random()*arr.length)];e.style.left=Math.random()*100+"vw";e.style.animationDuration=(2.8+Math.random()*3.6)+"s";e.style.fontSize=(14+Math.random()*20)+"px";document.body.appendChild(e);setTimeout(()=>e.remove(),7000)}}
+function render(){
+ stopMusic();const p=pages[page];
+ $("counter").textContent=String(page+1).padStart(2,"0")+" / 06";
+ $("dots").innerHTML=pages.map((_,i)=>`<span class="dot ${i===page?"active":""}"></span>`).join("");
+ let out=`<span class="emoji">${p.emoji}</span><div class="eyebrow">${p.tag}</div><h1>${p.title}</h1>`;
+ if(p.rules)out+=`<div class="rule"><b>😊</b><span>Aaj smile karna compulsory hai.</span></div><div class="rule"><b>🤭</b><span>Aaj tension ko chhutti de do.</span></div><div class="rule"><b>🍰</b><span>Cake mein mera hissa bhi rakhna, bhoolna mat! 😂</span></div>`;
+ else if(p.letter)out+=`<div class="letter">
+ <p><strong>Happy Birthday, meri Laado 🫶🏻❤️</strong></p>
+ <p>Aap shayad nahi jaanti ki aap mere liye kitni special ho. Jab se aap meri zindagi mein aaye ho, mujhe aisa lagta hai mujhe sab kuch mil gaya hai — pyaar, support, care, respect, it's and everything jo main chahta tha life mein. Aur ab bas woh kar paaun jo aap chahte ho, toh hum dono bahut khushi se rahenge.</p>
+ <p>Main chahta hoon ki aapke chehre par ye pyari si smile hamesha bani rahe. Main har woh koshish karunga jo mujhse ho sake, taaki aap khush raho aur aapke chehre par hamesha smile rahe. ❤️</p>
+ <p>Mujhe yakeen hai ki hum shaadi ke baad bhi bahut khush rahenge aur ek-dusre se aur bhi zyada pyaar karenge. 🥹❤️</p>
+ <p><strong>I love you, bachha. ❤️ Happy Birthday, my bachha! 🫶🏻❤️</strong></p>
+ <p class="signature">Aap meri aaj ki khushi hi nahi, meri aane wali zindagi ka bhi sabse pyara hissa ho. ❤️</p>
+ </div><button class="btn secondary" id="musicAgain">🎵 Happy Birthday music phir se suno</button><span class="music-note">🔊 Phone ka media volume bhi badha lena</span>`;
+ else out+=`<p>${p.body}</p>`;
+ $("content").innerHTML=out;$("next").textContent=p.button;
+ if(page===5){confetti();sparkle();musicTimeout=setTimeout(playBirthdayTune,500);$("musicAgain").addEventListener("click",()=>{getAudio();playBirthdayTune()})}
+}
+$("next").addEventListener("click",()=>{getAudio();sfx();if(page<5){page++;render();window.scrollTo({top:0,behavior:"smooth"})}else{page=0;render();window.scrollTo({top:0,behavior:"smooth"})}});
+$("sound").addEventListener("click",()=>{soundOn=!soundOn;$("sound").textContent=soundOn?"🔊 SOUND ON · LOUD":"🔇 SOUND OFF";if(!soundOn)stopMusic();else{getAudio();sfx();if(page===5)playBirthdayTune()}});
+for(let i=0;i<18;i++){const e=document.createElement("i");e.textContent=["♡","♥","✦","✧"][i%4];e.style.left=(Math.random()*100)+"%";e.style.animationDelay=(Math.random()*12)+"s";e.style.animationDuration=(9+Math.random()*9)+"s";e.style.fontSize=(18+Math.random()*25)+"px";$("ambient").appendChild(e)}
+render();
+</script>
+</body>
+</html>
