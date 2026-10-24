@@ -46,6 +46,16 @@ p{font-size:1.02rem;line-height:1.75;margin:12px 0}
 footer{margin-top:17px;color:#a27c91;font-size:.76rem}
 @media(max-width:380px){.wrap{padding:9px}.card{padding:20px 15px;border-radius:24px}.letter{padding:12px}.topline{margin-bottom:15px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+
+.photo-box{margin:16px 0 10px;padding:14px;border:1px dashed #f4a9c8;background:#fff5fa;border-radius:18px;text-align:center}
+.photo-box label{display:block;font-weight:800;color:#a9346e;font-size:.9rem;margin-bottom:9px}
+.photo-input{display:block;width:100%;padding:12px;border:1px solid #f2bfd4;border-radius:12px;background:#fff;color:#482b3b;font:inherit;font-size:.9rem;outline:none}
+.photo-input:focus{border-color:#e85b98;box-shadow:0 0 0 3px #ff8abb26}
+.photo-actions{display:flex;gap:8px;margin-top:9px}
+.photo-actions button{flex:1;margin:0;max-width:none;padding:11px 10px;font-size:.88rem}
+.gf-photo{display:block;width:100%;max-height:360px;object-fit:contain;border-radius:16px;margin:14px auto 4px;border:3px solid #fff;box-shadow:0 8px 24px #a33b6c20;background:#fff}
+.photo-error{font-size:.82rem;color:#b52f63;margin-top:8px}
+
 </style>
 </head>
 <body>
@@ -110,10 +120,18 @@ function render(){
  <p>Mujhe yakeen hai ki hum shaadi ke baad bhi bahut khush rahenge aur ek-dusre se aur bhi zyada pyaar karenge. 🥹❤️</p>
  <p><strong>I love you, bachha. ❤️ Happy Birthday, my bachha! 🫶🏻❤️</strong></p>
  <p class="signature">Aap meri aaj ki khushi hi nahi, meri aane wali zindagi ka bhi sabse pyara hissa ho. ❤️</p>
- </div><button class="btn secondary" id="musicAgain">🎵 Happy Birthday music phir se suno</button><span class="music-note">🔊 Phone ka media volume bhi badha lena</span>`;
+ </div>
+ <div class="photo-box" id="photoBox">
+   <img class="gf-photo" id="gfPhoto" src="https://i.postimg.cc/wTTMj6r9/IMG-20261024-234336.jpg" alt="" loading="lazy">
+ </div>
+ <button class="btn secondary" id="musicAgain">🎵 Happy Birthday music phir se suno</button><span class="music-note">🔊 Phone ka media volume bhi badha lena</span>`;
  else out+=`<p>${p.body}</p>`;
  $("content").innerHTML=out;$("next").textContent=p.button;
- if(page===5){confetti();sparkle();musicTimeout=setTimeout(playBirthdayTune,500);$("musicAgain").addEventListener("click",()=>{getAudio();playBirthdayTune()})}
+ if(page===5){confetti();sparkle();musicTimeout=setTimeout(playBirthdayTune,500);$("musicAgain").addEventListener("click",()=>{getAudio();playBirthdayTune()});
+ const photo=$("gfPhoto");
+ photo.onerror=()=>{photo.style.display="none";};
+ photo.onload=()=>{photo.style.display="block";};
+ }
 }
 $("next").addEventListener("click",()=>{getAudio();sfx();if(page<5){page++;render();window.scrollTo({top:0,behavior:"smooth"})}else{page=0;render();window.scrollTo({top:0,behavior:"smooth"})}});
 $("sound").addEventListener("click",()=>{soundOn=!soundOn;$("sound").textContent=soundOn?"🔊 SOUND ON · LOUD":"🔇 SOUND OFF";if(!soundOn)stopMusic();else{getAudio();sfx();if(page===5)playBirthdayTune()}});
